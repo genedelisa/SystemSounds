@@ -10,12 +10,13 @@
 *** See the bottom of this document for the declaration of the reference variables
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
+[![Contributors][contributors-shield]][contributors-url]
+[![Build Status][build-status-shield]][build-status-url]
 -->
 [![MIT License][license-shield]][license-url]
-[![Contributors][contributors-shield]][contributors-url]
+
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
-[![Build Status][build-status-shield]][build-status-url]
 [![Issues][issues-shield]][issues-url]
 
 [![Platforms][platforms-ios-shield]][platforms-ios-url]
@@ -23,6 +24,7 @@
 
 [![Sponsors][sponsors-shield]][sponsors-url]
 [![Twitter @GeneDeLisaDev][twitter-shield]][twitter-url]
+
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
@@ -38,6 +40,8 @@ An example using system sounds.
 
 
 [![GitHub issues](https://img.shields.io/github/issues/genedelisa/SystemSounds.svg)](https://github.com/genedelisa/SystemSounds/issues)
+
+[![Issues]][issues-url]
 
 If you find one, [please add it to issues](https://github.com/genedelisa/SystemSounds/issues)
 
