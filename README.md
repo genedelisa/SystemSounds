@@ -67,20 +67,20 @@ Please read the [LICENSE](LICENSE) for details.
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/genedelisa/repo.svg?style=for-the-badge
-[contributors-url]: https://github.com/genedelisa/repo/graphs/contributors
+[contributors-shield]: https://img.shields.io/github/contributors/genedelisa/SystemSounds.svg?style=for-the-badge
+[contributors-url]: https://github.com/genedelisa/SystemSounds/graphs/contributors
 
 [forks-shield]: https://img.shields.io/github/forks/genedelisa/repo.svg?style=for-the-badge
-[forks-url]: https://github.com/genedelisa/repo/network/members
+[forks-url]: https://github.com/genedelisa/SystemSounds/network/members
 
 [stars-shield]: https://img.shields.io/github/stars/genedelisa/repo.svg?style=for-the-badge
-[stars-url]: https://github.com/genedelisa/repo/stargazers
+[stars-url]: https://github.com/genedelisa/SystemSounds/stargazers
 
 [issues-shield]: https://img.shields.io/github/issues/genedelisa/repo.svg?style=for-the-badge
-[issues-url]: https://github.com/genedelisa/repo/issues
+[issues-url]: https://github.com/genedelisa/SystemSounds/issues
 
 [license-shield]: https://img.shields.io/github/license/genedelisa/repo.svg?style=for-the-badge
-[license-url]: https://github.com/genedelisa/repo/blob/master/LICENSE.txt
+[license-url]: https://github.com/genedelisa/SystemSounds/blob/master/LICENSE.txt
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/genedelisa
@@ -89,7 +89,7 @@ Please read the [LICENSE](LICENSE) for details.
 [sponsors-url]:https://rockhoppertech.com/
 
 [twitter-shield]:https://img.shields.io/twitter/follow/GeneDeLisaDev.svg?style=social
-[twitter-url] https://twitter.com/GeneDeLisaDev
+[twitter-url]: https://twitter.com/GeneDeLisaDev
 
 [build-status-shield]:https://travis-ci.org/genedelisa/SystemSounds.svg
 [build-status-url]:https://travis-ci.org/genedelisa/SystemSounds
