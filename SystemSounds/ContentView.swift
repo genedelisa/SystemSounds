@@ -36,15 +36,58 @@
 // COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
 // IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
 // CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-  
-  
+
+
 
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var audio = Audio()
+    @State var fullPath: Bool = false
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        
+        NavigationView {
+            
+            VStack {
+                
+                Button {
+                    audio.playSerena()
+                } label: {
+                    Text("Custom sound")
+                }
+                .padding()
+
+                
+                List(audio.sysSounds) { sound in
+                    Button(action: {
+                        audio.playSystemSound(url: sound.url)
+                    }, label: {
+                        if self.fullPath {
+                            Text("\(sound.url.absoluteString)")
+                        } else {
+                            Text("\(sound.url.lastPathComponent)")
+                        }
+                    })
+                }
+                .listStyle(GroupedListStyle())
+                
+                .toolbar {
+                    ToolbarItem(placement: .primaryAction) {
+                        Menu {
+                            Toggle(isOn: $fullPath, label: {
+                                Text("Full Path")
+                            })
+                            
+                        } label: {
+                            Image(systemName: "gearshape")
+                        }
+                    }
+                }
+                
+            }
+            .navigationTitle("System Soundz")
+        }
     }
 }
 

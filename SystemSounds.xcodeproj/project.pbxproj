@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		184BEE32264060EE006BBC33 /* serena.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 184BEE31264060EE006BBC33 /* serena.m4a */; };
 		18AFC9BC26404C9A0095D8E7 /* SystemSoundsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AFC9BB26404C9A0095D8E7 /* SystemSoundsApp.swift */; };
 		18AFC9BE26404C9A0095D8E7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AFC9BD26404C9A0095D8E7 /* ContentView.swift */; };
 		18AFC9C026404C9B0095D8E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18AFC9BF26404C9B0095D8E7 /* Assets.xcassets */; };
 		18AFC9C326404C9B0095D8E7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18AFC9C226404C9B0095D8E7 /* Preview Assets.xcassets */; };
 		18AFC9CE26404C9B0095D8E7 /* SystemSoundsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AFC9CD26404C9B0095D8E7 /* SystemSoundsTests.swift */; };
 		18AFC9D926404C9B0095D8E7 /* SystemSoundsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AFC9D826404C9B0095D8E7 /* SystemSoundsUITests.swift */; };
+		18AFC9E726404CB40095D8E7 /* Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AFC9E626404CB40095D8E7 /* Audio.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +35,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		184BEE31264060EE006BBC33 /* serena.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = serena.m4a; sourceTree = "<group>"; };
+		184BEE3326409CEB006BBC33 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		184BEE3426409CEB006BBC33 /* .swift-version */ = {isa = PBXFileReference; lastKnownFileType = text; path = ".swift-version"; sourceTree = "<group>"; };
+		184BEE3526409CEB006BBC33 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		184BEE3626409CEC006BBC33 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		184BEE3726409CEC006BBC33 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		18AFC9B826404C9A0095D8E7 /* SystemSounds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SystemSounds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18AFC9BB26404C9A0095D8E7 /* SystemSoundsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSoundsApp.swift; sourceTree = "<group>"; };
 		18AFC9BD26404C9A0095D8E7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -45,6 +53,7 @@
 		18AFC9D426404C9B0095D8E7 /* SystemSoundsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SystemSoundsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18AFC9D826404C9B0095D8E7 /* SystemSoundsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSoundsUITests.swift; sourceTree = "<group>"; };
 		18AFC9DA26404C9B0095D8E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18AFC9E626404CB40095D8E7 /* Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +84,11 @@
 		18AFC9AF26404C9A0095D8E7 = {
 			isa = PBXGroup;
 			children = (
+				184BEE3326409CEB006BBC33 /* .gitignore */,
+				184BEE3426409CEB006BBC33 /* .swift-version */,
+				184BEE3726409CEC006BBC33 /* .swiftlint.yml */,
+				184BEE3526409CEB006BBC33 /* LICENSE */,
+				184BEE3626409CEC006BBC33 /* README.md */,
 				18AFC9BA26404C9A0095D8E7 /* SystemSounds */,
 				18AFC9CC26404C9B0095D8E7 /* SystemSoundsTests */,
 				18AFC9D726404C9B0095D8E7 /* SystemSoundsUITests */,
@@ -95,11 +109,13 @@
 		18AFC9BA26404C9A0095D8E7 /* SystemSounds */ = {
 			isa = PBXGroup;
 			children = (
+				184BEE31264060EE006BBC33 /* serena.m4a */,
 				18AFC9BB26404C9A0095D8E7 /* SystemSoundsApp.swift */,
 				18AFC9BD26404C9A0095D8E7 /* ContentView.swift */,
 				18AFC9BF26404C9B0095D8E7 /* Assets.xcassets */,
 				18AFC9C426404C9B0095D8E7 /* Info.plist */,
 				18AFC9C126404C9B0095D8E7 /* Preview Content */,
+				18AFC9E626404CB40095D8E7 /* Audio.swift */,
 			);
 			path = SystemSounds;
 			sourceTree = "<group>";
@@ -235,6 +251,7 @@
 			files = (
 				18AFC9C326404C9B0095D8E7 /* Preview Assets.xcassets in Resources */,
 				18AFC9C026404C9B0095D8E7 /* Assets.xcassets in Resources */,
+				184BEE32264060EE006BBC33 /* serena.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18AFC9E726404CB40095D8E7 /* Audio.swift in Sources */,
 				18AFC9BE26404C9A0095D8E7 /* ContentView.swift in Sources */,
 				18AFC9BC26404C9A0095D8E7 /* SystemSoundsApp.swift in Sources */,
 			);
