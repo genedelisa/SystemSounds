@@ -23,10 +23,8 @@
 [![Swift 5][swift5-shield]][swift5-url]
 
 [![Sponsors][sponsors-shield]][sponsors-url]
-[![Twitter @GeneDeLisaDev][twitter-shield]][twitter-url]
 
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
+[![LinkedIn][linkedin-shield]][linkedin-url] [![Twitter @GeneDeLisaDev][twitter-shield]][twitter-url]
 
 An example using system sounds.
 
@@ -41,7 +39,7 @@ An example using system sounds.
 
 [![GitHub issues](https://img.shields.io/github/issues/genedelisa/SystemSounds.svg)](https://github.com/genedelisa/SystemSounds/issues)
 
-[![Issues]][issues-url]
+[Issues][issues-url]
 
 If you find one, [please add it to issues](https://github.com/genedelisa/SystemSounds/issues)
 
