@@ -70,19 +70,19 @@ Please read the [LICENSE](LICENSE) for details.
 [contributors-shield]: https://img.shields.io/github/contributors/genedelisa/SystemSounds.svg?style=for-the-badge
 [contributors-url]: https://github.com/genedelisa/SystemSounds/graphs/contributors
 
-[forks-shield]: https://img.shields.io/github/forks/genedelisa/repo.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/genedelisa/SystemSounds.svg?style=for-the-badge
 [forks-url]: https://github.com/genedelisa/SystemSounds/network/members
 
-[stars-shield]: https://img.shields.io/github/stars/genedelisa/repo.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/genedelisa/SystemSounds.svg?style=for-the-badge
 [stars-url]: https://github.com/genedelisa/SystemSounds/stargazers
 
-[issues-shield]: https://img.shields.io/github/issues/genedelisa/repo.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/genedelisa/SystemSounds.svg?style=for-the-badge
 [issues-url]: https://github.com/genedelisa/SystemSounds/issues
 
-[license-shield]: https://img.shields.io/github/license/genedelisa/repo.svg?style=for-the-badge
-[license-url]: https://github.com/genedelisa/SystemSounds/blob/master/LICENSE.txt
+[license-shield]: https://img.shields.io/github/license/genedelisa/SystemSounds.svg?style=for-the-badge
+[license-url]: https://github.com/genedelisa/SystemSounds/blob/master/LICENSE
 
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-blue.svg?style=for-the-badge&logo=linkedin
 [linkedin-url]: https://linkedin.com/in/genedelisa
 
 [sponsors-shield]:https://img.shields.io/badge/Sponsors-Rockhopper%20Technologies-orange.svg?style=flat
