@@ -1,18 +1,6 @@
 # SystemSounds
 
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://en.wikipedia.org/wiki/MIT_License)
-[![Build Status](https://travis-ci.org/genedelisa/SystemSounds.svg)](https://travis-ci.org/genedelisa/SystemSounds)
-[![GitHub tag](https://img.shields.io/github/tag/genedelisa/SystemSounds.svg)](https://github.com/genedelisa/SystemSounds/)
-[![GitHub release](https://img.shields.io/github/release/genedelisa/SystemSounds.svg)](https://github.com/genedelisa/SystemSounds/)
-[![GitHub commits](https://img.shields.io/github/commits-since/genedelisa/SystemSounds/1.0.0.svg)
-[![GitHub version](https://badge.fury.io/gh/genedelisa%2FSystemSounds)](https://github.com/genedelisa/SystemSounds)
-[![GitHub stars](https://img.shields.io/github/stars/genedelisa/SystemSounds.svg?style=social&label=Star&maxAge=2592000)](https://GitHub.com/genedelisa/SystemSounds/stargazers/)
 
-[![Swift 5](https://img.shields.io/badge/swift5-compatible-4BC51D.svg?style=flat")](https://developer.apple.com/swift)
-
-[![Platforms macOS | iOS](https://img.shields.io/badge/Platforms-OS%20X%20%7C%20iOS-lightgray.svg?style=flat)](https://swift.org/)
-[![Platforms macOS](https://img.shields.io/badge/Platforms-OS%20X-lightgray.svg?style=flat)](https://swift.org/)
-[![Platforms iOS](https://img.shields.io/badge/Platforms-iOS-lightgray.svg?style=flat)](https://swift.org/)
 
 
 <!-- PROJECT SHIELDS -->
@@ -23,15 +11,19 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
+[![MIT License][license-shield]][license-url]
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
+[![Build Status][build-status-shield]][build-status-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
+
+[![Platforms][platforms-ios-shield]][platforms-ios-url]
+[![Swift 5][swift5-shield]][swift5-url]
 
 [![Sponsors][sponsors-shield]][sponsors-url]
 [![Twitter @GeneDeLisaDev][twitter-shield]][twitter-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
 
 An example using system sounds.
@@ -94,10 +86,40 @@ Please read the [LICENSE](LICENSE) for details.
 [linkedin-url]: https://linkedin.com/in/genedelisa
 
 [sponsors-shield]:https://img.shields.io/badge/Sponsors-Rockhopper%20Technologies-orange.svg?style=flat
-[sponsors-url]: https://rockhoppertech.com/
+[sponsors-url]:https://rockhoppertech.com/
 
 [twitter-shield]:https://img.shields.io/twitter/follow/GeneDeLisaDev.svg?style=social
-[twitter-url]: https://twitter.com/GeneDeLisaDev
+[twitter-url] https://twitter.com/GeneDeLisaDev
+
+[build-status-shield]:https://travis-ci.org/genedelisa/SystemSounds.svg
+[build-status-url]:https://travis-ci.org/genedelisa/SystemSounds
+
+[github-tag-shield]:https://img.shields.io/github/tag/genedelisa/SystemSounds.svg
+[github-tag-url]:https://github.com/genedelisa/SystemSounds/
+
+[github-release-shield]:https://img.shields.io/github/release/genedelisa/SystemSounds.svg
+[github-release-url]:https://github.com/genedelisa/SystemSounds/
+
+[github-version-shield]:https://badge.fury.io/gh/genedelisa%2FSystemSounds
+[github-version-url]:https://github.com/genedelisa/SystemSounds
+
+[github-stars-shield]:https://img.shields.io/github/stars/genedelisa/SystemSounds.svg?style=social&label=Star&maxAge=2592000
+[github-stars-url]:https://github.com/genedelisa/SystemSounds/stargazers/
+
+[swift5-shield]:https://img.shields.io/badge/swift5-compatible-4BC51D.svg?style=flat
+[swift5-url]:https://developer.apple.com/swift
+
+[platforms-ios-shield]:https://img.shields.io/badge/Platforms-iOS-lightgray.svg?style=flat
+[platforms-ios-url]:https://swift.org/
+
+[platforms-macos-shield]:https://img.shields.io/badge/Platforms-macOS-lightgray.svg?style=flat
+[platforms-macos-url]:https://swift.org/
+
+[platforms-osx-shield]:https://img.shields.io/badge/Platforms-OS%20X-lightgray.svg?style=flat
+[platforms-osx-url]:https://swift.org/
+
+
+
 
 
 
