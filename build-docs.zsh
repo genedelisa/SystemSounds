@@ -259,6 +259,8 @@ run_jazzy() {
 	--module ${module} \
 	--framework-root ${framework_root} \
 	--readme ${readme} \
+         --min-acl internal \
+        --no-hide-documentation-coverage \
 	--output ${output}
 
     # jazzy \

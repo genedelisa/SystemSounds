@@ -42,18 +42,23 @@
 import AVFoundation
 import os.log
 
-// for SwiftUI Lists
+/// A wrapper to be used in SwiftUI Lists
 struct SysSound: Identifiable {
     var id = UUID()
     var url: URL
 }
 
+/// An observable class that publishes standard system sounds.
+/// It also provides audio functions that the client can call.
 class Audio: ObservableObject {
     
+    /// an os logger with the Audio category
     let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "Audio")
     
+    /// The items used in the SwiftUI List
     @Published var sysSounds = [SysSound]()
-    
+
+    /// a local handle
     var serena: SystemSoundID = .zero
     
     init() {
@@ -71,10 +76,13 @@ class Audio: ObservableObject {
         } else {
             logger.error("Could not retrieve system sounds")
         }
-        
+
+        // playSerena() will do this on demand
         serena = createSysSound(fileName: "serena", fileExt: "m4a")
     }
-
+    
+    /// A client side callable function. Hides the details.
+    /// This will create a system sound for a custom sound file and play it.
     func playSerena() {
         if serena == .zero {
             serena = createSysSound(fileName: "serena", fileExt: "m4a")
@@ -83,13 +91,16 @@ class Audio: ObservableObject {
     }
     
     
+    /// Find all of the standard system sounds.
+    /// - Returns: An array of the file urls to the system sounds.
     func findSystemSounds() -> [URL]? {
         self.logger.trace("\(#function)")
         
         #if targetEnvironment(simulator)
         self.logger.debug("Sounds not available on the simulator")
         return nil
-        #endif
+
+        #else
         
         var fileURLs = [URL]()
         let soundDir = "/System/Library/Audio/UISounds"
@@ -111,15 +122,20 @@ class Audio: ObservableObject {
             print("can not enumerate \(soundDirURL.absoluteString)")
         }
         return fileURLs
+
+        #endif
     }
     
+
+    /// Find the standard system sounds, skipping the subdirectories.
+    /// - Returns: An array of the file urls to the system sounds.
     func findSystemSoundsNonRecursive() -> [URL]? {
         self.logger.trace("\(#function)")
 
         #if targetEnvironment(simulator)
         self.logger.debug("Sounds not available on the simulator")
         return nil
-        #endif
+        #else
         
         var fileURLs = [URL]()
         let soundDir = "/System/Library/Audio/UISounds"
@@ -138,9 +154,12 @@ class Audio: ObservableObject {
             return nil
         }
         return fileURLs
+        #endif
     }
     
     
+    /// Plays a system sound.
+    /// - Parameter url: The file URL to the sound file
     func playSystemSound(url: URL) {
         self.logger.trace("\(#function)")
         
@@ -153,7 +172,12 @@ class Audio: ObservableObject {
         }
         AudioServicesPlaySystemSound(soundID)
     }
-
+    
+    /// Create a System sound from a custom sound file.
+    /// - Parameters:
+    ///   - fileName: The base name of the sound file.
+    ///   - fileExt: The file extension.
+    /// - Returns: a SystemSoundID that can be played
     func createSysSound(fileName: String, fileExt: String) -> SystemSoundID {
         var mySysSound: SystemSoundID = .zero
         

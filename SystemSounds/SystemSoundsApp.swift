@@ -42,6 +42,7 @@
 import SwiftUI
 
 @main
+/// The main app
 struct SystemSoundsApp: App {
     var body: some Scene {
         WindowGroup {

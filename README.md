@@ -84,6 +84,7 @@ Please read the [LICENSE](LICENSE) for details.
 ## Credits
 
 [Gene De Lisa's development blog](http://rockhoppertech.com/blog/)
+
 [Gene De Lisa's music blog](http://genedelisa.com/)
 
 [![Twitter @GeneDeLisaDev][twitter-shield]][twitter-url]

@@ -41,6 +41,7 @@
 
 import SwiftUI
 
+/// The SwiftUI main view.
 struct ContentView: View {
     @ObservedObject var audio = Audio()
     @State var fullPath: Bool = false
@@ -91,6 +92,7 @@ struct ContentView: View {
     }
 }
 
+/// SwiftUI preview for ContentView
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
