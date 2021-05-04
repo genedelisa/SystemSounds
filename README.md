@@ -23,9 +23,6 @@
 
 [![Sponsors][sponsors-shield]][sponsors-url]
 
-[![Twitter @GeneDeLisaDev][twitter-shield]][twitter-url]
-
-[![LinkedIn][linkedin-shield]][linkedin-url] 
 
 
 ## Summary
@@ -35,7 +32,7 @@ This is a Swift example showing the use of iOS/iPadOS system sounds.
 
 ## Blog post for this example.
 
-[Blog post](http://www.rockhoppertech.com/blog/)
+[Blog post][blog-post-url]
 
 
 ## Bugs
@@ -61,8 +58,13 @@ Please read the [LICENSE](LICENSE) for details.
 
 * [Gene De Lisa's development blog](http://rockhoppertech.com/blog/)
 * [Gene De Lisa's music blog](http://genedelisa.com/)
-* [Twitter @GeneDeLisaDev](http://twitter.com/genedelisadev)
 
+
+[![LinkedIn][linkedin-shield]][linkedin-url] 
+
+[![Stackoverflow][lstackoverflow-shield]][stackoverflow-url] 
+
+[![Twitter @GeneDeLisaDev][twitter-shield]][twitter-url]
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
@@ -96,6 +98,8 @@ Please read the [LICENSE](LICENSE) for details.
 
 [build-status-shield]:https://travis-ci.org/genedelisa/SystemSounds.svg
 [build-status-url]:https://travis-ci.org/genedelisa/SystemSounds
+[travis-status-url]:https://img.shields.io/travis/com/genedelisa/SystemSounds?style=for-the-badge
+[circleci-status-url]:https://img.shields.io/circleci/build/github/genedelisa/SystemSounds
 
 [github-tag-shield]:https://img.shields.io/github/tag/genedelisa/SystemSounds.svg
 [github-tag-url]:https://github.com/genedelisa/SystemSounds/
@@ -105,6 +109,11 @@ Please read the [LICENSE](LICENSE) for details.
 
 [github-version-shield]:https://badge.fury.io/gh/genedelisa%2FSystemSounds
 [github-version-url]:https://github.com/genedelisa/SystemSounds
+
+[github-last-commit]:https://img.shields.io/github/last-commit/genedelisa/SystemSounds
+
+[github-issues]:https://img.shields.io/github/issues-raw/genedelisa/SystemSounds
+[github-closed-issues]:https://img.shields.io/github/issues-closed-raw/genedelisa/SystemSounds
 
 [github-stars-shield]:https://img.shields.io/github/stars/genedelisa/SystemSounds.svg?style=social&label=Star&maxAge=2592000
 [github-stars-url]:https://github.com/genedelisa/SystemSounds/stargazers/
@@ -124,4 +133,7 @@ Please read the [LICENSE](LICENSE) for details.
 [paypal-img]:https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif
 [paypal-url]:https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=F5KE9Z29MH8YQ&bnP-DonationsBF:btn_donate_SM.gif:NonHosted
 
+[stackoverflow-shield]:https://img.shields.io/badge/Stackoverflow.svg?style=flat
+[stackoverflow-url]:https://stackoverflow.com/users/409891/gene-de-lisa
 
+[blog-post-url]:http://www.rockhoppertech.com/blog/
