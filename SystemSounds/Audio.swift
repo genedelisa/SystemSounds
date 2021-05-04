@@ -65,7 +65,7 @@ class Audio: ObservableObject {
         self.logger.trace("\(#function)")
         
         if let surls = findSystemSounds() {
-            sysSounds = surls.map() { SysSound(url: $0) }
+            sysSounds = surls.map { SysSound(url: $0) }
                 .sorted(by: { a, b in
                     return a.url.absoluteString < b.url.absoluteString
                 })
@@ -148,7 +148,7 @@ class Audio: ObservableObject {
                                                        options: FileManager.DirectoryEnumerationOptions.skipsHiddenFiles)
 
             // if you're paranoid
-            fileURLs = urls.filter{ $0.pathExtension == "caf" }
+            fileURLs = urls.filter { $0.pathExtension == "caf" }
             
         } catch {
             return nil
@@ -280,21 +280,21 @@ class Audio: ObservableObject {
         
         do {
             let contents = try FileManager.default.contentsOfDirectory(at: directoryURL,
-                                                                       includingPropertiesForKeys:[.contentModificationDateKey],
+                                                                       includingPropertiesForKeys: [.contentModificationDateKey],
                                                                        options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
                 .filter { $0.lastPathComponent.hasSuffix(".caf") }
                 .sorted(by: {
-                    let date0 = try $0.promisedItemResourceValues(forKeys:[.contentModificationDateKey]).contentModificationDate!
-                    let date1 = try $1.promisedItemResourceValues(forKeys:[.contentModificationDateKey]).contentModificationDate!
+                    let date0 = try $0.promisedItemResourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate!
+                    let date1 = try $1.promisedItemResourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate!
                     return date0.compare(date1) == .orderedDescending
                 })
             
             for item in contents {
-                guard let t = try? item.promisedItemResourceValues(forKeys:[.contentModificationDateKey]).contentModificationDate
+                guard let t = try? item.promisedItemResourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate
                 else {
                     return
                 }
-                print ("\(t)   \(item.lastPathComponent)")
+                print("\(t)   \(item.lastPathComponent)")
             }
         } catch {
             print(error.localizedDescription)
