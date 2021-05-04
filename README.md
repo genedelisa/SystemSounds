@@ -79,7 +79,7 @@ If you find one, please add it to [Issues][issues-url]
 
 ## Licensing
 
-[MIT License][MIT-license-wiki-url]
+[MIT License article on Wikipedia][MIT-license-wiki-url]
 
 Please read the [LICENSE](LICENSE) for details.
 
@@ -113,7 +113,8 @@ Please read the [LICENSE](LICENSE) for details.
 [issues-url]: https://github.com/genedelisa/SystemSounds/issues
 
 [license-shield]: https://img.shields.io/github/license/genedelisa/SystemSounds.svg?style=flat
-[license-url]: https://github.com/genedelisa/SystemSounds/blob/master/LICENSE
+[license-url]: https://github.com/genedelisa/SystemSounds/blob/main/LICENSE
+
 
 [MIT-license-wiki-url]:https://en.wikipedia.org/wiki/MIT_License
 
