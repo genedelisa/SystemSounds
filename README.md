@@ -28,8 +28,9 @@
 [![LinkedIn][linkedin-shield]][linkedin-url] 
 
 
+## Summary
 
-This is an example showing the use of iOS/iPadOS system sounds.
+This is a Swift example showing the use of iOS/iPadOS system sounds.
 
 
 ## Blog post for this example.
@@ -45,14 +46,14 @@ If you find one, please add it to [Issues][issues-url]
 
 ### Buy my kitty Giacomo some cat food
 
-<img src="http://www.rockhoppertech.com/blog/wp-content/uploads/2016/07/momocoding-1024.png" alt="Giacomo Kitty" width="400" height="300">
-
 [![Paypal][paypal-img]][paypal-url] 
+
+<img src="http://www.rockhoppertech.com/blog/wp-content/uploads/2016/07/momocoding-1024.png" alt="Giacomo Kitty" width="400" height="300">
 
 
 ## Licensing
 
-[MIT License][license-url]
+[MIT License][MIT-license-wiki-url]
 
 Please read the [LICENSE](LICENSE) for details.
 
@@ -81,6 +82,8 @@ Please read the [LICENSE](LICENSE) for details.
 
 [license-shield]: https://img.shields.io/github/license/genedelisa/SystemSounds.svg?style=for-the-badge
 [license-url]: https://github.com/genedelisa/SystemSounds/blob/master/LICENSE
+
+[MIT-license-wiki-url]:https://en.wikipedia.org/wiki/MIT_License
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-blue.svg?style=for-the-badge&logo=linkedin
 [linkedin-url]: https://linkedin.com/in/genedelisa
