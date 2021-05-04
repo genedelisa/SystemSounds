@@ -133,7 +133,12 @@ Please read the [LICENSE](LICENSE) for details.
 [paypal-img]:https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif
 [paypal-url]:https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=F5KE9Z29MH8YQ&bnP-DonationsBF:btn_donate_SM.gif:NonHosted
 
-[stackoverflow-shield]:https://img.shields.io/badge/stackoverflow-lightgray.svg?style=flat
+[stackoverflow-blah-shield]:https://img.shields.io/badge/stackoverflow-lightgray.svg?style=flat
+[stackoverflow-shield]:https://stackoverflow-badge.vercel.app/?userID=409891
 [stackoverflow-url]:https://stackoverflow.com/users/409891/gene-de-lisa
 
 [blog-post-url]:http://www.rockhoppertech.com/blog/
+
+
+
+
