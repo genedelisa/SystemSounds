@@ -14,8 +14,8 @@
 -->
 
 [![MIT License][license-shield]][license-url]
-[![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
+[![Forks][forks-shield]][forks-url]
 [![Issues][issues-shield]][issues-url]
 
 [![Platforms][platforms-ios-shield]][platforms-ios-url]
@@ -25,17 +25,44 @@
 
 
 
+## Table of Contents
+  * [Summary](#summary)
+  * [Blog post](#blog-post-for-this-example)
+  * [Usage](#usage)
+  * [Issues](#issues)
+  * [Licensing](#licensing)
+  * [Credits](#credits)
+
+
 ## Summary
 
-This is a Swift example showing the use of iOS/iPadOS system sounds.
+This is a Swift/SwiftUI example showing the use of iOS/iPadOS system sounds.
 
 
-## Blog post for this example.
+## Blog post for this example
 
 [Blog post][blog-post-url]
 
 
-## Bugs
+## Usage
+Read the blog post. Or just read the code.
+
+e.g. playing a system sound.
+
+```swift
+import AVFoundation
+...
+var soundID: SystemSoundID = .zero
+let osstatus = AudioServicesCreateSystemSoundID(url as CFURL, &soundID)
+if osstatus != noErr {
+    print("could not get system sound at url: \(url.absoluteString)")
+    print("osstatus: \(osstatus)")
+    return
+}
+AudioServicesPlaySystemSound(soundID)
+```
+
+## Issues
 
 
 If you find one, please add it to [Issues][issues-url]
@@ -56,15 +83,15 @@ Please read the [LICENSE](LICENSE) for details.
 
 ## Credits
 
-* [Gene De Lisa's development blog](http://rockhoppertech.com/blog/)
-* [Gene De Lisa's music blog](http://genedelisa.com/)
-
-
-[![Stackoverflow][stackoverflow-shield]][stackoverflow-url] 
+[Gene De Lisa's development blog](http://rockhoppertech.com/blog/)
+[Gene De Lisa's music blog](http://genedelisa.com/)
 
 [![Twitter @GeneDeLisaDev][twitter-shield]][twitter-url]
 
 [![LinkedIn][linkedin-shield]][linkedin-url] 
+
+[![Stackoverflow][stackoverflow-shield]][stackoverflow-url] 
+
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
