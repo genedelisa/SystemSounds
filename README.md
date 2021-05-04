@@ -14,7 +14,6 @@
 [![Build Status][build-status-shield]][build-status-url]
 -->
 [![MIT License][license-shield]][license-url]
-
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
@@ -24,7 +23,10 @@
 
 [![Sponsors][sponsors-shield]][sponsors-url]
 
-[![LinkedIn][linkedin-shield]][linkedin-url] [![Twitter @GeneDeLisaDev][twitter-shield]][twitter-url]
+[![Twitter @GeneDeLisaDev][twitter-shield]][twitter-url]
+[![LinkedIn][linkedin-shield]][linkedin-url] 
+
+
 
 An example using system sounds.
 
@@ -37,8 +39,6 @@ An example using system sounds.
 ## Bugs
 
 
-[![GitHub issues](https://img.shields.io/github/issues/genedelisa/SystemSounds.svg)](https://github.com/genedelisa/SystemSounds/issues)
-
 [Issues][issues-url]
 
 If you find one, [please add it to issues](https://github.com/genedelisa/SystemSounds/issues)
@@ -46,6 +46,8 @@ If you find one, [please add it to issues](https://github.com/genedelisa/SystemS
 
 
 ### Buy my kitty Giacomo some cat food
+
+[![Paypal][paypal-img]][paypal-url] 
 
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=F5KE9Z29MH8YQ&bnP-DonationsBF:btn_donate_SM.gif:NonHosted)
 
@@ -123,5 +125,7 @@ Please read the [LICENSE](LICENSE) for details.
 
 
 
+[paypal-img]:https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif
+[paypal-url]:https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=F5KE9Z29MH8YQ&bnP-DonationsBF:btn_donate_SM.gif:NonHosted
 
 
