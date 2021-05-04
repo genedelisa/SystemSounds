@@ -60,11 +60,11 @@ Please read the [LICENSE](LICENSE) for details.
 * [Gene De Lisa's music blog](http://genedelisa.com/)
 
 
-[![LinkedIn][linkedin-shield]][linkedin-url] 
-
-[![Stackoverflow][lstackoverflow-shield]][stackoverflow-url] 
+[![Stackoverflow][stackoverflow-shield]][stackoverflow-url] 
 
 [![Twitter @GeneDeLisaDev][twitter-shield]][twitter-url]
+
+[![LinkedIn][linkedin-shield]][linkedin-url] 
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
