@@ -70,19 +70,19 @@ Please read the [LICENSE](LICENSE) for details.
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/genedelisa/SystemSounds.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/genedelisa/SystemSounds.svg?style=flat
 [contributors-url]: https://github.com/genedelisa/SystemSounds/graphs/contributors
 
-[forks-shield]: https://img.shields.io/github/forks/genedelisa/SystemSounds.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/genedelisa/SystemSounds.svg?style=flat
 [forks-url]: https://github.com/genedelisa/SystemSounds/network/members
 
-[stars-shield]: https://img.shields.io/github/stars/genedelisa/SystemSounds.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/genedelisa/SystemSounds.svg?style=flat
 [stars-url]: https://github.com/genedelisa/SystemSounds/stargazers
 
-[issues-shield]: https://img.shields.io/github/issues/genedelisa/SystemSounds.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/genedelisa/SystemSounds.svg?style=flat
 [issues-url]: https://github.com/genedelisa/SystemSounds/issues
 
-[license-shield]: https://img.shields.io/github/license/genedelisa/SystemSounds.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/genedelisa/SystemSounds.svg?style=flat
 [license-url]: https://github.com/genedelisa/SystemSounds/blob/master/LICENSE
 
 [MIT-license-wiki-url]:https://en.wikipedia.org/wiki/MIT_License
