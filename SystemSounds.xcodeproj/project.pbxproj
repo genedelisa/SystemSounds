@@ -45,6 +45,9 @@
 		184BEE3926418676006BBC33 /* build-docs.zsh */ = {isa = PBXFileReference; lastKnownFileType = text; path = "build-docs.zsh"; sourceTree = "<group>"; };
 		184BEE3A26418750006BBC33 /* runtests.zsh */ = {isa = PBXFileReference; lastKnownFileType = text; path = runtests.zsh; sourceTree = "<group>"; };
 		184BEE512642D0EB006BBC33 /* jazzy.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = jazzy.yml; sourceTree = "<group>"; };
+		184BEE532642DAFD006BBC33 /* getLogLevel.zsh */ = {isa = PBXFileReference; lastKnownFileType = text; path = getLogLevel.zsh; sourceTree = "<group>"; };
+		184BEE542642DAFD006BBC33 /* streamLog.zsh */ = {isa = PBXFileReference; lastKnownFileType = text; path = streamLog.zsh; sourceTree = "<group>"; };
+		184BEE552642DAFD006BBC33 /* setDebugLogLevel.zsh */ = {isa = PBXFileReference; lastKnownFileType = text; path = setDebugLogLevel.zsh; sourceTree = "<group>"; };
 		18AFC9B826404C9A0095D8E7 /* SystemSounds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SystemSounds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18AFC9BB26404C9A0095D8E7 /* SystemSoundsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSoundsApp.swift; sourceTree = "<group>"; };
 		18AFC9BD26404C9A0095D8E7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -85,9 +88,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		184BEE522642DAFD006BBC33 /* scripts */ = {
+			isa = PBXGroup;
+			children = (
+				184BEE532642DAFD006BBC33 /* getLogLevel.zsh */,
+				184BEE542642DAFD006BBC33 /* streamLog.zsh */,
+				184BEE552642DAFD006BBC33 /* setDebugLogLevel.zsh */,
+			);
+			path = scripts;
+			sourceTree = "<group>";
+		};
 		18AFC9AF26404C9A0095D8E7 = {
 			isa = PBXGroup;
 			children = (
+				184BEE522642DAFD006BBC33 /* scripts */,
 				184BEE3826418676006BBC33 /* .github */,
 				184BEE3A26418750006BBC33 /* runtests.zsh */,
 				184BEE3926418676006BBC33 /* build-docs.zsh */,

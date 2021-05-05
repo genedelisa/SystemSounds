@@ -17,7 +17,7 @@
     <a title="Audio Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">SystemSounds Docs</a> (84% documented)</p>
+        <p><a href="../index.html">SystemSounds Docs</a> (88% documented)</p>
         <p class="header-right"><a href="https://github.com/genedelisa/SystemSounds"><img src="../img/gh.png"/>View on GitHub</a></p>
         <p class="header-right">
           <form role="search" action="../search.json">
@@ -179,7 +179,8 @@ It also provides audio functions that the client can call.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Get the ball rolling.
+Setup the Audio Session, and find the session sounds</p>
 
                       </div>
                       <div class="declaration">
@@ -646,7 +647,7 @@ This will create a system sound for a custom sound file and play it.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Set the  &ldquo;is UI sound&rdquo; property on the given sound.</p>
+                        <p>Set the  &ldquo;is UI sound&rdquo; property on the given sound. If set, it will be silent if the user chooses to turn off sound effects.</p>
 
                       </div>
                       <div class="declaration">
@@ -744,9 +745,9 @@ This will create a system sound for a custom sound file and play it.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:12SystemSounds5AudioC21vibrateWithCompletionyyF"></a>
-                    <a name="//apple_ref/swift/Method/vibrateWithCompletion()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:12SystemSounds5AudioC21vibrateWithCompletionyyF">vibrateWithCompletion()</a>
+                    <a name="/s:12SystemSounds5AudioC25registerVibrateCompletionyyF"></a>
+                    <a name="//apple_ref/swift/Method/registerVibrateCompletion()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12SystemSounds5AudioC25registerVibrateCompletionyyF">registerVibrateCompletion()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -754,14 +755,17 @@ This will create a system sound for a custom sound file and play it.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Add a completion callback to vibrate</p>
+                        <p>Add a completion callback to vibrate.
+Call this only once. Otherwise you get a kAudioServicesSystemSoundUnspecifiedError error.
+But it doesn&rsquo;t work!
+Doesn&rsquo;t really matter because the other play functions have completions that work.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">vibrateWithCompletion</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">registerVibrateCompletion</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -789,6 +793,33 @@ This will create a system sound for a custom sound file and play it.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">removeVibrateCompletion</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:12SystemSounds5AudioC18setSessionPlaybackyyF"></a>
+                    <a name="//apple_ref/swift/Method/setSessionPlayback()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:12SystemSounds5AudioC18setSessionPlaybackyyF">setSessionPlayback()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set the Audio session to playback and activate it</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setSessionPlayback</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>

@@ -9,14 +9,7 @@
     },
     {
       "file": "/Users/genedelisa/Development/gene/Apple/SystemSounds/SystemSounds/Audio.swift",
-      "line": 64,
-      "symbol": "Audio.init()",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/genedelisa/Development/gene/Apple/SystemSounds/SystemSounds/Audio.swift",
-      "line": 430,
+      "line": 478,
       "symbol": "Audio.deinit",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"

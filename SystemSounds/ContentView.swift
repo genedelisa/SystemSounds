@@ -78,6 +78,9 @@ struct ContentView: View {
                             audio.playSerena()
                         } label: {
                             Text("Custom sound")
+                                .accessibility(label: Text("Play a Custom Sound"))
+                                .accessibility(hint: Text("This will play a custom sound"))
+                                .accessibility(identifier: "CustomSoundButton")
                         }
                         .buttonStyle(GDButtonStyle())
                         
@@ -96,9 +99,9 @@ struct ContentView: View {
                         .buttonStyle(GDButtonStyle())
                         
                         Button {
-                            audio.vibrateWithCompletion()
+                            audio.registerVibrateCompletion()
                         } label: {
-                            Text("Vibrate with completion")
+                            Text("Register Vibrate completion. Call only once.")
                         }
                         .buttonStyle(GDButtonStyle())
                         

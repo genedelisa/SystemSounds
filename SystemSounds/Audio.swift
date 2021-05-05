@@ -61,8 +61,12 @@ class Audio: ObservableObject {
     /// a local handle
     var serena: SystemSoundID = .zero
     
+    /// Get the ball rolling.
+    /// Setup the Audio Session, and find the session sounds
     init() {
         self.logger.trace("\(#function)")
+        
+        setSessionPlayback()
         
         if let surls = findSystemSounds() {
             sysSounds = surls.map { SysSound(url: $0) }
@@ -76,9 +80,6 @@ class Audio: ObservableObject {
         } else {
             logger.error("Could not retrieve system sounds")
         }
-        
-        // playSerena() will do this on demand
-        // serena = createSysSound(fileName: "serena", fileExt: "m4a")
     }
     
     // MARK: Client functions
@@ -90,25 +91,25 @@ class Audio: ObservableObject {
             
             // don't need this, but here's an example
             if isUISound(soundID: serena) {
-                print("serena is a ui sound")
+                logger.debug("serena is a ui sound")
             } else {
-                print("serena is not a ui sound")
+                logger.debug("serena is not a ui sound")
             }
             
             setUISound(soundID: serena, value: 1)
-            print("setting serena to be a ui sound")
+            logger.debug("setting serena to be a ui sound")
             if isUISound(soundID: serena) {
-                print("serena is a ui sound")
+                logger.debug("serena is a ui sound")
             } else {
-                print("serena is not a ui sound")
+                logger.debug("serena is not a ui sound")
             }
             
             setUISound(soundID: serena, value: 0)
-            print("setting serena to not be a ui sound")
+            logger.debug("setting serena to not be a ui sound")
             if isUISound(soundID: serena) {
-                print("serena is a ui sound")
+                logger.debug("serena is a ui sound")
             } else {
-                print("serena is not a ui sound")
+                logger.debug("serena is not a ui sound")
             }
         }
         AudioServicesPlaySystemSound(serena)
@@ -117,11 +118,11 @@ class Audio: ObservableObject {
     /// Play vibrate as an alert sound. and as a system sound
     func vibrate() {
         AudioServicesPlaySystemSoundWithCompletion(kSystemSoundID_Vibrate) {
-            print("completed playing vibrate")
+            self.logger.debug("completed playing vibrate")
         }
         
         AudioServicesPlayAlertSoundWithCompletion(kSystemSoundID_Vibrate) {
-            print("completed alerting vibrate")
+            self.logger.debug("completed alerting vibrate")
         }
         
     }
@@ -133,7 +134,7 @@ class Audio: ObservableObject {
                 AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {
                     AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {
                         AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {
-                            print("finally done!")
+                            self.logger.debug("finally done!")
                         }
                     }
                 }
@@ -172,7 +173,7 @@ class Audio: ObservableObject {
                 }
             }
         } else {
-            print("can not enumerate \(soundDirURL.absoluteString)")
+            logger.debug("can not enumerate \(soundDirURL.absoluteString)")
         }
         return fileURLs
         
@@ -218,21 +219,21 @@ class Audio: ObservableObject {
     func checkSysSoundError(osstatus: OSStatus) {
         switch osstatus {
         case kAudioServicesNoError:
-            print("kAudioServicesNoError \(osstatus)")
+            logger.debug("kAudioServicesNoError \(osstatus)")
         case kAudioServicesUnsupportedPropertyError:
-            print("kAudioServicesUnsupportedPropertyError \(osstatus)")
+            logger.error("kAudioServicesUnsupportedPropertyError \(osstatus)")
         case kAudioServicesBadPropertySizeError:
-            print("kAudioServicesBadPropertySizeError \(osstatus)")
+            logger.error("kAudioServicesBadPropertySizeError \(osstatus)")
         case kAudioServicesBadSpecifierSizeError:
-            print("kAudioServicesBadSpecifierSizeError \(osstatus)")
+            logger.error("kAudioServicesBadSpecifierSizeError \(osstatus)")
         case kAudioServicesSystemSoundUnspecifiedError:
-            print("kAudioServicesSystemSoundUnspecifiedError \(osstatus)")
+            logger.error("kAudioServicesSystemSoundUnspecifiedError \(osstatus)")
         case kAudioServicesSystemSoundClientTimedOutError:
-            print("kAudioServicesSystemSoundClientTimedOutError \(osstatus)")
+            logger.error("kAudioServicesSystemSoundClientTimedOutError \(osstatus)")
         case kAudioServicesSystemSoundExceededMaximumDurationError:
-            print("kAudioServicesSystemSoundExceededMaximumDurationError \(osstatus)")
+            logger.error("kAudioServicesSystemSoundExceededMaximumDurationError \(osstatus)")
         default:
-            print("Non system sound error \(osstatus)")
+            logger.error("Non system sound error \(osstatus)")
         }
     }
 
@@ -244,8 +245,8 @@ class Audio: ObservableObject {
         var soundID: SystemSoundID = .zero
         let osstatus = AudioServicesCreateSystemSoundID(url as CFURL, &soundID)
         if osstatus != kAudioServicesNoError {
-            print("could not get system sound at url: \(url.absoluteString)")
-            print("osstatus: \(osstatus)")
+            logger.error("could not get system sound at url: \(url.absoluteString)")
+            logger.error("osstatus: \(osstatus)")
             return
         }
         checkSysSoundError(osstatus: osstatus)
@@ -253,7 +254,7 @@ class Audio: ObservableObject {
         // AudioServicesPlaySystemSound(soundID)
         // or
         AudioServicesPlaySystemSoundWithCompletion(soundID) {
-            print("done playing")
+            self.logger.debug("done playing")
         }
     }
     
@@ -271,8 +272,8 @@ class Audio: ObservableObject {
         }
         let osstatus = AudioServicesCreateSystemSoundID(url as CFURL, &mySysSound)
         if osstatus != kAudioServicesNoError {
-            print("could not create system sound")
-            print("osstatus: \(osstatus)")
+            self.logger.error("could not create system sound")
+            self.logger.error("osstatus: \(osstatus)")
         }
         checkSysSoundError(osstatus: osstatus)
         return mySysSound
@@ -303,10 +304,10 @@ class Audio: ObservableObject {
                 else {
                     return
                 }
-                print("\(t)   \(item.lastPathComponent)")
+                logger.debug("\(t)   \(item.lastPathComponent)")
             }
         } catch {
-            print(error.localizedDescription)
+            self.logger.debug("\(error.localizedDescription)")
         }
     }
     
@@ -345,7 +346,7 @@ class Audio: ObservableObject {
             }
 
         } else {
-            print("can not enumerate \(soundDirURL.absoluteString)")
+            logger.debug("can not enumerate \(soundDirURL.absoluteString)")
         }
         
         return fileURLs
@@ -355,7 +356,10 @@ class Audio: ObservableObject {
 
     // MARK: properties
     
-    /// Set the  "is UI sound" property on the given sound.
+    // There are two available properties.
+    // https://developer.apple.com/documentation/audiotoolbox/audio_services/1405268-system_sound_services_property_i
+    
+    /// Set the  "is UI sound" property on the given sound. If set, it will be silent if the user chooses to turn off sound effects.
     /// - Parameter soundID: the sound whose property will be set
     /// - Parameter value: 1 for true, 0 for false
     func setUISound(soundID: SystemSoundID, value: UInt32) {
@@ -392,26 +396,28 @@ class Audio: ObservableObject {
                                                 &outPropertyData)
 
         checkSysSoundError(osstatus: osstatus)
-        print("Is ui sound? \(outPropertyData)")
+        logger.debug("Is ui sound? \(outPropertyData)")
         return outPropertyData == 1 ? true: false
     }
     
     /// Add a completion callback to vibrate.
-    /// This doesn't currently work!
+    /// Call this only once. Otherwise you get a kAudioServicesSystemSoundUnspecifiedError error.
+    /// But it doesn't work!
     /// Doesn't really matter because the other play functions have completions that work.
-    func vibrateWithCompletion() {
+    func registerVibrateCompletion() {
         
         let inSystemSoundID: SystemSoundID = kSystemSoundID_Vibrate
         let inRunLoop: CFRunLoop? = nil
         let inRunLoopMode: CFString? = nil
         var inClientData = "Hey!"
         
-        //AudioServicesSystemSoundCompletionProc = @convention(c) (SystemSoundID, UnsafeMutableRawPointer?) -> Void
+        // AudioServicesSystemSoundCompletionProc = @convention(c) (SystemSoundID, UnsafeMutableRawPointer?) -> Void
 
         // add a completion to vibrate to vibrate again.
         let osstatus = AudioServicesAddSystemSoundCompletion(
-            inSystemSoundID, inRunLoop, inRunLoopMode,
-            { (sid: SystemSoundID, clientData: UnsafeMutableRawPointer?) -> Void in
+            inSystemSoundID, inRunLoop, inRunLoopMode, { (sid: SystemSoundID, clientData: UnsafeMutableRawPointer?) -> Void in
+                print("In the system sound completion callback")
+                
                 if let cd = clientData {
                     print("client data: \(cd)")
                 }
@@ -423,8 +429,8 @@ class Audio: ObservableObject {
             &inClientData)
         
         if osstatus != kAudioServicesNoError {
-            print("could not add sound completion")
-            print("osstatus: \(osstatus)")
+            logger.error("could not add sound completion")
+            logger.error("osstatus: \(osstatus)")
         }
         checkSysSoundError(osstatus: osstatus)
         
@@ -438,6 +444,36 @@ class Audio: ObservableObject {
     func removeVibrateCompletion() {
         AudioServicesRemoveSystemSoundCompletion(kSystemSoundID_Vibrate)
     }
+    
+    
+    /// Set the Audio session to playback and activate it
+    func setSessionPlayback() {
+        logger.debug("\(#function)")
+
+        #if os(iOS)
+
+        let options: AVAudioSession.CategoryOptions = [.defaultToSpeaker, .allowBluetooth, .allowAirPlay, .mixWithOthers]
+
+        // Start audio session
+        let session = AVAudioSession.sharedInstance()
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback,
+                                                            mode: AVAudioSession.Mode.default,
+                                                            options: options)
+        } catch {
+            logger.debug("could not set session category")
+            logger.debug("\(error.localizedDescription)")
+        }
+
+        do {
+            try session.setActive(true)
+        } catch {
+            logger.debug("could not make session active")
+            logger.debug("\(error.localizedDescription)")
+        }
+        #endif
+    }
+
     
     deinit {
         let osstatus = AudioServicesDisposeSystemSoundID(serena)
