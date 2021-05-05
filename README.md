@@ -171,7 +171,7 @@ Please read the [LICENSE](LICENSE) for details.
 [stackoverflow-shield]:https://stackoverflow-badge.vercel.app/?userID=409891
 [stackoverflow-url]:https://stackoverflow.com/users/409891/gene-de-lisa
 
-[blog-post-url]:http://www.rockhoppertech.com/blog/
+[blog-post-url]:http://www.rockhoppertech.com/blog/apple-system-sounds/
 
 [github-pages]:https://genedelisa.github.io/SystemSounds/
 
