@@ -43,8 +43,22 @@ import SwiftUI
 
 /// The SwiftUI main view.
 struct ContentView: View {
-    @ObservedObject var audio = Audio()
+
+    // see SystemSoundsApp
+    @EnvironmentObject var audio: Audio
+    // or
+    // @ObservedObject var audio = Audio()
+    
     @State var fullPath: Bool = false
+    
+    private var fcolumns = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    private var columns = [
+        GridItem(), GridItem()
+    ]
+    
     
     var body: some View {
         
@@ -52,13 +66,45 @@ struct ContentView: View {
             
             VStack {
                 
-                Button {
-                    audio.playSerena()
-                } label: {
-                    Text("Custom sound")
+                ScrollView {
+                    
+                    LazyVGrid(
+                        columns: columns,
+                        alignment: .center,
+                        spacing: 16
+                    ) {
+                        
+                        Button {
+                            audio.playSerena()
+                        } label: {
+                            Text("Custom sound")
+                        }
+                        .buttonStyle(GDButtonStyle())
+                        
+                        Button {
+                            audio.vibrate()
+                        } label: {
+                            Text("Vibrate")
+                        }
+                        .buttonStyle(GDButtonStyle())
+                        
+                        Button {
+                            audio.annoy()
+                        } label: {
+                            Text("Annoy")
+                        }
+                        .buttonStyle(GDButtonStyle())
+                        
+                        Button {
+                            audio.vibrateWithCompletion()
+                        } label: {
+                            Text("Vibrate with completion")
+                        }
+                        .buttonStyle(GDButtonStyle())
+                        
+                    }
                 }
-                .padding()
-
+                
                 
                 List(audio.sysSounds) { sound in
                     Button(action: {
@@ -95,6 +141,41 @@ struct ContentView: View {
 /// SwiftUI preview for ContentView
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        
+        Group {
+            ContentView()
+                .environment(\.colorScheme, .light)
+                .environment(\.locale, .init(identifier: "en"))
+                .previewDevice(PreviewDevice(rawValue: "iPhone 12)"))
+                .previewDisplayName("Light: iPhone 12")
+            
+            ContentView()
+                .environment(\.colorScheme, .dark)
+                .environment(\.locale, .init(identifier: "en"))
+                .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
+                .previewDisplayName("Dark: iPhone 12")
+        }
+        
+    }
+}
+
+/// A Button style to keep things dry
+struct GDButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        
+        configuration.label
+            .padding()
+            .background(!configuration.isPressed ?
+                            Color.blue : Color.green)
+            
+            .foregroundColor(!configuration.isPressed ? .white : .black)
+            
+            .cornerRadius(8)
+            //            .clipShape(Capsule())
+            .compositingGroup()
+            .shadow(color: .black, radius: 3)
+            .opacity(configuration.isPressed ? 0.5 : 1.0)
+            .scaleEffect(configuration.isPressed ? 0.8 : 1.0)
+            .animation(.easeOut(duration: 0.2))
     }
 }

@@ -41,12 +41,17 @@
 
 import SwiftUI
 
+/// The main app.
+/// It creates the Audio object and puts it into the environment.
 @main
-/// The main app
 struct SystemSoundsApp: App {
+    
+    @StateObject private var audio = Audio()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(audio)
         }
     }
 }

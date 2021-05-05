@@ -57,7 +57,7 @@ class Audio: ObservableObject {
     
     /// The items used in the SwiftUI List
     @Published var sysSounds = [SysSound]()
-
+    
     /// a local handle
     var serena: SystemSoundID = .zero
     
@@ -69,27 +69,80 @@ class Audio: ObservableObject {
                 .sorted(by: { a, b in
                     return a.url.absoluteString < b.url.absoluteString
                 })
-
+            
             for url in surls {
                 logger.debug("\(url.absoluteString)")
             }
         } else {
             logger.error("Could not retrieve system sounds")
         }
-
+        
         // playSerena() will do this on demand
-        serena = createSysSound(fileName: "serena", fileExt: "m4a")
+        // serena = createSysSound(fileName: "serena", fileExt: "m4a")
     }
     
+    // MARK: Client functions
     /// A client side callable function. Hides the details.
     /// This will create a system sound for a custom sound file and play it.
     func playSerena() {
         if serena == .zero {
             serena = createSysSound(fileName: "serena", fileExt: "m4a")
+            
+            // don't need this, but here's an example
+            if isUISound(soundID: serena) {
+                print("serena is a ui sound")
+            } else {
+                print("serena is not a ui sound")
+            }
+            
+            setUISound(soundID: serena, value: 1)
+            print("setting serena to be a ui sound")
+            if isUISound(soundID: serena) {
+                print("serena is a ui sound")
+            } else {
+                print("serena is not a ui sound")
+            }
+            
+            setUISound(soundID: serena, value: 0)
+            print("setting serena to not be a ui sound")
+            if isUISound(soundID: serena) {
+                print("serena is a ui sound")
+            } else {
+                print("serena is not a ui sound")
+            }
         }
         AudioServicesPlaySystemSound(serena)
     }
     
+    /// Play vibrate as an alert sound. and as a system sound
+    func vibrate() {
+        AudioServicesPlaySystemSoundWithCompletion(kSystemSoundID_Vibrate) {
+            print("completed playing vibrate")
+        }
+        
+        AudioServicesPlayAlertSoundWithCompletion(kSystemSoundID_Vibrate) {
+            print("completed alerting vibrate")
+        }
+        
+    }
+    
+    /// Play vibrate alert sound repeatedly
+    func annoy() {
+        AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {
+            AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {
+                AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {
+                    AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {
+                        AudioServicesPlayAlertSoundWithCompletion(SystemSoundID(kSystemSoundID_Vibrate)) {
+                            print("finally done!")
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    // MARK: Directory frobs
     
     /// Find all of the standard system sounds.
     /// - Returns: An array of the file urls to the system sounds.
@@ -99,7 +152,7 @@ class Audio: ObservableObject {
         #if targetEnvironment(simulator)
         self.logger.debug("Sounds not available on the simulator")
         return nil
-
+        
         #else
         
         var fileURLs = [URL]()
@@ -122,16 +175,16 @@ class Audio: ObservableObject {
             print("can not enumerate \(soundDirURL.absoluteString)")
         }
         return fileURLs
-
+        
         #endif
     }
     
-
+    
     /// Find the standard system sounds, skipping the subdirectories.
     /// - Returns: An array of the file urls to the system sounds.
     func findSystemSoundsNonRecursive() -> [URL]? {
         self.logger.trace("\(#function)")
-
+        
         #if targetEnvironment(simulator)
         self.logger.debug("Sounds not available on the simulator")
         return nil
@@ -146,7 +199,7 @@ class Audio: ObservableObject {
             try urls = fileManager.contentsOfDirectory(at: soundDirURL,
                                                        includingPropertiesForKeys: [URLResourceKey.isReadableKey],
                                                        options: FileManager.DirectoryEnumerationOptions.skipsHiddenFiles)
-
+            
             // if you're paranoid
             fileURLs = urls.filter { $0.pathExtension == "caf" }
             
@@ -158,6 +211,31 @@ class Audio: ObservableObject {
     }
     
     
+    // MARK: System Sound frobs
+    
+    /// Display a more meaningful string from an error code.
+    /// - Parameter osstatus: The error code
+    func checkSysSoundError(osstatus: OSStatus) {
+        switch osstatus {
+        case kAudioServicesNoError:
+            print("kAudioServicesNoError \(osstatus)")
+        case kAudioServicesUnsupportedPropertyError:
+            print("kAudioServicesUnsupportedPropertyError \(osstatus)")
+        case kAudioServicesBadPropertySizeError:
+            print("kAudioServicesBadPropertySizeError \(osstatus)")
+        case kAudioServicesBadSpecifierSizeError:
+            print("kAudioServicesBadSpecifierSizeError \(osstatus)")
+        case kAudioServicesSystemSoundUnspecifiedError:
+            print("kAudioServicesSystemSoundUnspecifiedError \(osstatus)")
+        case kAudioServicesSystemSoundClientTimedOutError:
+            print("kAudioServicesSystemSoundClientTimedOutError \(osstatus)")
+        case kAudioServicesSystemSoundExceededMaximumDurationError:
+            print("kAudioServicesSystemSoundExceededMaximumDurationError \(osstatus)")
+        default:
+            print("Non system sound error \(osstatus)")
+        }
+    }
+
     /// Plays a system sound.
     /// - Parameter url: The file URL to the sound file
     func playSystemSound(url: URL) {
@@ -165,13 +243,20 @@ class Audio: ObservableObject {
         
         var soundID: SystemSoundID = .zero
         let osstatus = AudioServicesCreateSystemSoundID(url as CFURL, &soundID)
-        if osstatus != noErr {
+        if osstatus != kAudioServicesNoError {
             print("could not get system sound at url: \(url.absoluteString)")
             print("osstatus: \(osstatus)")
             return
         }
-        AudioServicesPlaySystemSound(soundID)
+        checkSysSoundError(osstatus: osstatus)
+        
+        // AudioServicesPlaySystemSound(soundID)
+        // or
+        AudioServicesPlaySystemSoundWithCompletion(soundID) {
+            print("done playing")
+        }
     }
+    
     
     /// Create a System sound from a custom sound file.
     /// - Parameters:
@@ -185,103 +270,27 @@ class Audio: ObservableObject {
             return .zero
         }
         let osstatus = AudioServicesCreateSystemSoundID(url as CFURL, &mySysSound)
-        if osstatus != noErr {
+        if osstatus != kAudioServicesNoError {
             print("could not create system sound")
             print("osstatus: \(osstatus)")
         }
+        checkSysSoundError(osstatus: osstatus)
         return mySysSound
     }
     
-    /*
-     on my iPad 2021
-     file:///System/Library/Audio/UISounds/SIMToolkitNegativeACK.caf
-     file:///System/Library/Audio/UISounds/key_press_delete.caf
-     file:///System/Library/Audio/UISounds/acknowledgment_received.caf
-     file:///System/Library/Audio/UISounds/SIMToolkitPositiveACK.caf
-     file:///System/Library/Audio/UISounds/short_double_high.caf
-     file:///System/Library/Audio/UISounds/acknowledgment_sent.caf
-     file:///System/Library/Audio/UISounds/tweet_sent.caf
-     file:///System/Library/Audio/UISounds/end_record.caf
-     file:///System/Library/Audio/UISounds/begin_record.caf
-     file:///System/Library/Audio/UISounds/Modern/
-     file:///System/Library/Audio/UISounds/SIMToolkitCallDropped.caf
-     file:///System/Library/Audio/UISounds/Tink.caf
-     file:///System/Library/Audio/UISounds/short_double_low.caf
-     file:///System/Library/Audio/UISounds/Tock.caf
-     file:///System/Library/Audio/UISounds/sms-received2.caf
-     file:///System/Library/Audio/UISounds/focus_change_small.caf
-     file:///System/Library/Audio/UISounds/access_scan_complete.caf
-     file:///System/Library/Audio/UISounds/nano/
-     file:///System/Library/Audio/UISounds/lock.caf
-     file:///System/Library/Audio/UISounds/sms-received3.caf
-     file:///System/Library/Audio/UISounds/sms-received1.caf
-     file:///System/Library/Audio/UISounds/ct-path-ack.caf
-     file:///System/Library/Audio/UISounds/keyboard_press_clear.caf
-     file:///System/Library/Audio/UISounds/3rd_party_critical.caf
-     file:///System/Library/Audio/UISounds/sms-received4.caf
-     file:///System/Library/Audio/UISounds/SIMToolkitSMS.caf
-     file:///System/Library/Audio/UISounds/photoShutter.caf
-     file:///System/Library/Audio/UISounds/camera_timer_countdown.caf
-     file:///System/Library/Audio/UISounds/sms-received5.caf
-     file:///System/Library/Audio/UISounds/SIMToolkitGeneralBeep.caf
-     file:///System/Library/Audio/UISounds/middle_9_short_double_low.caf
-     file:///System/Library/Audio/UISounds/focus_change_large.caf
-     file:///System/Library/Audio/UISounds/SentMessage.caf
-     file:///System/Library/Audio/UISounds/sms-received6.caf
-     file:///System/Library/Audio/UISounds/RingerChanged.caf
-     file:///System/Library/Audio/UISounds/navigation_push.caf
-     file:///System/Library/Audio/UISounds/jbl_no_match.caf
-     file:///System/Library/Audio/UISounds/payment_failure.caf
-     file:///System/Library/Audio/UISounds/warsaw.caf
-     file:///System/Library/Audio/UISounds/navigation_pop.caf
-     file:///System/Library/Audio/UISounds/health_notification.caf
-     file:///System/Library/Audio/UISounds/key_press_modifier.caf
-     file:///System/Library/Audio/UISounds/nfc_scan_failure.caf
-     file:///System/Library/Audio/UISounds/ct-busy.caf
-     file:///System/Library/Audio/UISounds/camera_timer_final_second.caf
-     file:///System/Library/Audio/UISounds/wheels_of_time.caf
-     file:///System/Library/Audio/UISounds/low_power.caf
-     file:///System/Library/Audio/UISounds/long_low_short_high.caf
-     file:///System/Library/Audio/UISounds/mail-sent.caf
-     file:///System/Library/Audio/UISounds/jbl_begin.caf
-     file:///System/Library/Audio/UISounds/short_low_high.caf
-     file:///System/Library/Audio/UISounds/focus_change_keyboard.caf
-     file:///System/Library/Audio/UISounds/jbl_confirm.caf
-     file:///System/Library/Audio/UISounds/keyboard_press_delete.caf
-     file:///System/Library/Audio/UISounds/connect_power.caf
-     file:///System/Library/Audio/UISounds/focus_change_app_icon.caf
-     file:///System/Library/Audio/UISounds/keyboard_press_normal.caf
-     file:///System/Library/Audio/UISounds/go_to_sleep_alert.caf
-     file:///System/Library/Audio/UISounds/ReceivedMessage.caf
-     file:///System/Library/Audio/UISounds/ct-congestion.caf
-     file:///System/Library/Audio/UISounds/key_press_click.caf
-     file:///System/Library/Audio/UISounds/ct-keytone2.caf
-     file:///System/Library/Audio/UISounds/jbl_cancel.caf
-     file:///System/Library/Audio/UISounds/new-mail.caf
-     file:///System/Library/Audio/UISounds/shake.caf
-     file:///System/Library/Audio/UISounds/New/
-     file:///System/Library/Audio/UISounds/multiway_invitation.caf
-     file:///System/Library/Audio/UISounds/ct-error.caf
-     file:///System/Library/Audio/UISounds/ussd.caf
-     file:///System/Library/Audio/UISounds/jbl_ambiguous.caf
-     file:///System/Library/Audio/UISounds/nfc_scan_complete.caf
-     file:///System/Library/Audio/UISounds/Swish.caf
-     file:///System/Library/Audio/UISounds/payment_success.caf
-     file:///System/Library/Audio/UISounds/alarm.caf
-     
-     */
     
+    // MARK: alternate directory frobs
     
-    
-    func foo(directoryURL: URL) {
+    /// Get the contents of a directory sorted
+    /// - Parameter directoryURL: The directory you want to list
+    func dirsFilteredAndSorted(directoryURL: URL) {
         
-        //        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        //        guard let directoryURL = URL(string: paths.path) else {return}
-        
+        let fileManager = FileManager.default
         do {
-            let contents = try FileManager.default.contentsOfDirectory(at: directoryURL,
-                                                                       includingPropertiesForKeys: [.contentModificationDateKey],
-                                                                       options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
+            let contents =
+                try fileManager.contentsOfDirectory(at: directoryURL,
+                                                    includingPropertiesForKeys: [.contentModificationDateKey],
+                                                    options: [.skipsHiddenFiles, .skipsSubdirectoryDescendants])
                 .filter { $0.lastPathComponent.hasSuffix(".caf") }
                 .sorted(by: {
                     let date0 = try $0.promisedItemResourceValues(forKeys: [.contentModificationDateKey]).contentModificationDate!
@@ -300,20 +309,210 @@ class Audio: ObservableObject {
             print(error.localizedDescription)
         }
     }
+    
+    
+    /// Another way to list the contents of the system sounds directory
+    /// - Returns: an array of URLs representing the files in that directory.
+    func filesWithErrorHandlerAndProperties() -> [URL]? {
+        #if targetEnvironment(simulator)
+        self.logger.debug("Sounds not available on the simulator")
+        return nil
+        #else
+        
+        var fileURLs = [URL]()
+        let soundDir = "/System/Library/Audio/UISounds"
+        let soundDirURL = URL(fileURLWithPath: soundDir)
+        
+        let fileManager = FileManager.default
+        
+        // with error handler and properties
+        let eh: (URL, Error) -> Bool = {
+            (_, _) -> Bool in
+            // do something
+            return true
+        }
+        if let enumerator =
+            fileManager.enumerator(at: soundDirURL,
+                                   includingPropertiesForKeys: [.contentTypeKey],
+                                   options: [.skipsHiddenFiles],
+                                   errorHandler: eh) {
+            
+            for case let name as String in enumerator {
+                if name.hasSuffix(".caf") {
+                    let fu = soundDirURL.appendingPathComponent(name)
+                    fileURLs.append(fu)
+                }
+            }
+
+        } else {
+            print("can not enumerate \(soundDirURL.absoluteString)")
+        }
+        
+        return fileURLs
+        #endif
+    }
+
+
+    // MARK: properties
+    
+    /// Set the  "is UI sound" property on the given sound.
+    /// - Parameter soundID: the sound whose property will be set
+    /// - Parameter value: 1 for true, 0 for false
+    func setUISound(soundID: SystemSoundID, value: UInt32) {
+        
+        let inPropertyID = kAudioServicesPropertyIsUISound
+        var inSpecifier = soundID
+        let inSpecifierSize = UInt32(MemoryLayout.size(ofValue: inSpecifier))
+        var inPropertyData: UInt32 = value
+        let inPropertyDataSize = UInt32(MemoryLayout.size(ofValue: inPropertyData))
+
+        let osstatus = AudioServicesSetProperty(inPropertyID,
+                                                inSpecifierSize,
+                                                &inSpecifier,
+                                                inPropertyDataSize,
+                                                &inPropertyData)
+        checkSysSoundError(osstatus: osstatus)
+        
+    }
+    
+    /// Check to see if the sounds has the UISound property set
+    /// - Parameter soundID: the sound to check
+    /// - Returns: true if the property is set, false if not
+    func isUISound(soundID: SystemSoundID) -> Bool {
+        let inPropertyID = kAudioServicesPropertyIsUISound
+        let inSpecifierSize = UInt32(MemoryLayout.size(ofValue: inPropertyID))
+        var inSpecifier = soundID
+        var outPropertyData: UInt32 = .zero
+        var ioPropertyDataSize = UInt32(MemoryLayout.size(ofValue: outPropertyData))
+        
+        let osstatus = AudioServicesGetProperty(kAudioServicesPropertyIsUISound,
+                                                inSpecifierSize,
+                                                &inSpecifier,
+                                                &ioPropertyDataSize,
+                                                &outPropertyData)
+
+        checkSysSoundError(osstatus: osstatus)
+        print("Is ui sound? \(outPropertyData)")
+        return outPropertyData == 1 ? true: false
+    }
+    
+    /// Add a completion callback to vibrate
+    func vibrateWithCompletion() {
+        
+        // add a completion to vibrate to vibrate again.
+        let osstatus = AudioServicesAddSystemSoundCompletion(
+            kSystemSoundID_Vibrate,
+            nil, nil, // run loop params
+            {
+                (sid: SystemSoundID, clientData: UnsafeMutableRawPointer?) -> Void in
+                if let cd = clientData {
+                    print("client data: \(cd)")
+                }
+                print("\(sid) completed")
+
+                // play it again, sam
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+            },
+            nil) // client data
+        
+        if osstatus != kAudioServicesNoError {
+            print("could not add sound completion")
+            print("osstatus: \(osstatus)")
+        }
+        checkSysSoundError(osstatus: osstatus)
+    }
+    
+    /// Unregister the vibrate completion
+    func removeVibrateCompletion() {
+        AudioServicesRemoveSystemSoundCompletion(kSystemSoundID_Vibrate)
+    }
+    
+    deinit {
+        let osstatus = AudioServicesDisposeSystemSoundID(serena)
+        checkSysSoundError(osstatus: osstatus)
+        removeVibrateCompletion()
+    }
+    
 }
 
-/*
- let fileManager = FileManager.default
- 
- // with error handler and properties
- //        let eh: (URL, Error) -> Bool = {
- //            (url, error) -> Bool in
- //            return true
- //        }
- //        if let enumerator = fileManager.enumerator(at: soundDirURL,
- //                                                   includingPropertiesForKeys: [.contentTypeKey],
- //                                                   options: [.skipsHiddenFiles],
- //                                                   errorHandler: eh) {
- //        }
 
+
+
+/*
+ on my iPad 2021
+ file:///System/Library/Audio/UISounds/SIMToolkitNegativeACK.caf
+ file:///System/Library/Audio/UISounds/key_press_delete.caf
+ file:///System/Library/Audio/UISounds/acknowledgment_received.caf
+ file:///System/Library/Audio/UISounds/SIMToolkitPositiveACK.caf
+ file:///System/Library/Audio/UISounds/short_double_high.caf
+ file:///System/Library/Audio/UISounds/acknowledgment_sent.caf
+ file:///System/Library/Audio/UISounds/tweet_sent.caf
+ file:///System/Library/Audio/UISounds/end_record.caf
+ file:///System/Library/Audio/UISounds/begin_record.caf
+ file:///System/Library/Audio/UISounds/Modern/
+ file:///System/Library/Audio/UISounds/SIMToolkitCallDropped.caf
+ file:///System/Library/Audio/UISounds/Tink.caf
+ file:///System/Library/Audio/UISounds/short_double_low.caf
+ file:///System/Library/Audio/UISounds/Tock.caf
+ file:///System/Library/Audio/UISounds/sms-received2.caf
+ file:///System/Library/Audio/UISounds/focus_change_small.caf
+ file:///System/Library/Audio/UISounds/access_scan_complete.caf
+ file:///System/Library/Audio/UISounds/nano/
+ file:///System/Library/Audio/UISounds/lock.caf
+ file:///System/Library/Audio/UISounds/sms-received3.caf
+ file:///System/Library/Audio/UISounds/sms-received1.caf
+ file:///System/Library/Audio/UISounds/ct-path-ack.caf
+ file:///System/Library/Audio/UISounds/keyboard_press_clear.caf
+ file:///System/Library/Audio/UISounds/3rd_party_critical.caf
+ file:///System/Library/Audio/UISounds/sms-received4.caf
+ file:///System/Library/Audio/UISounds/SIMToolkitSMS.caf
+ file:///System/Library/Audio/UISounds/photoShutter.caf
+ file:///System/Library/Audio/UISounds/camera_timer_countdown.caf
+ file:///System/Library/Audio/UISounds/sms-received5.caf
+ file:///System/Library/Audio/UISounds/SIMToolkitGeneralBeep.caf
+ file:///System/Library/Audio/UISounds/middle_9_short_double_low.caf
+ file:///System/Library/Audio/UISounds/focus_change_large.caf
+ file:///System/Library/Audio/UISounds/SentMessage.caf
+ file:///System/Library/Audio/UISounds/sms-received6.caf
+ file:///System/Library/Audio/UISounds/RingerChanged.caf
+ file:///System/Library/Audio/UISounds/navigation_push.caf
+ file:///System/Library/Audio/UISounds/jbl_no_match.caf
+ file:///System/Library/Audio/UISounds/payment_failure.caf
+ file:///System/Library/Audio/UISounds/warsaw.caf
+ file:///System/Library/Audio/UISounds/navigation_pop.caf
+ file:///System/Library/Audio/UISounds/health_notification.caf
+ file:///System/Library/Audio/UISounds/key_press_modifier.caf
+ file:///System/Library/Audio/UISounds/nfc_scan_failure.caf
+ file:///System/Library/Audio/UISounds/ct-busy.caf
+ file:///System/Library/Audio/UISounds/camera_timer_final_second.caf
+ file:///System/Library/Audio/UISounds/wheels_of_time.caf
+ file:///System/Library/Audio/UISounds/low_power.caf
+ file:///System/Library/Audio/UISounds/long_low_short_high.caf
+ file:///System/Library/Audio/UISounds/mail-sent.caf
+ file:///System/Library/Audio/UISounds/jbl_begin.caf
+ file:///System/Library/Audio/UISounds/short_low_high.caf
+ file:///System/Library/Audio/UISounds/focus_change_keyboard.caf
+ file:///System/Library/Audio/UISounds/jbl_confirm.caf
+ file:///System/Library/Audio/UISounds/keyboard_press_delete.caf
+ file:///System/Library/Audio/UISounds/connect_power.caf
+ file:///System/Library/Audio/UISounds/focus_change_app_icon.caf
+ file:///System/Library/Audio/UISounds/keyboard_press_normal.caf
+ file:///System/Library/Audio/UISounds/go_to_sleep_alert.caf
+ file:///System/Library/Audio/UISounds/ReceivedMessage.caf
+ file:///System/Library/Audio/UISounds/ct-congestion.caf
+ file:///System/Library/Audio/UISounds/key_press_click.caf
+ file:///System/Library/Audio/UISounds/ct-keytone2.caf
+ file:///System/Library/Audio/UISounds/jbl_cancel.caf
+ file:///System/Library/Audio/UISounds/new-mail.caf
+ file:///System/Library/Audio/UISounds/shake.caf
+ file:///System/Library/Audio/UISounds/New/
+ file:///System/Library/Audio/UISounds/multiway_invitation.caf
+ file:///System/Library/Audio/UISounds/ct-error.caf
+ file:///System/Library/Audio/UISounds/ussd.caf
+ file:///System/Library/Audio/UISounds/jbl_ambiguous.caf
+ file:///System/Library/Audio/UISounds/nfc_scan_complete.caf
+ file:///System/Library/Audio/UISounds/Swish.caf
+ file:///System/Library/Audio/UISounds/payment_success.caf
+ file:///System/Library/Audio/UISounds/alarm.caf
+ 
  */

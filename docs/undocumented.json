@@ -9,44 +9,30 @@
     },
     {
       "file": "/Users/genedelisa/Development/gene/Apple/SystemSounds/SystemSounds/Audio.swift",
-      "line": 55,
-      "symbol": "Audio.logger",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/genedelisa/Development/gene/Apple/SystemSounds/SystemSounds/Audio.swift",
-      "line": 63,
+      "line": 64,
       "symbol": "Audio.init()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/genedelisa/Development/gene/Apple/SystemSounds/SystemSounds/Audio.swift",
-      "line": 271,
-      "symbol": "Audio.foo(directoryURL:)",
+      "line": 430,
+      "symbol": "Audio.deinit",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/genedelisa/Development/gene/Apple/SystemSounds/SystemSounds/ContentView.swift",
-      "line": 46,
+      "line": 48,
       "symbol": "ContentView.audio",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/genedelisa/Development/gene/Apple/SystemSounds/SystemSounds/ContentView.swift",
-      "line": 47,
+      "line": 52,
       "symbol": "ContentView.fullPath",
       "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/genedelisa/Development/gene/Apple/SystemSounds/SystemSounds/SystemSoundsApp.swift",
-      "line": 45,
-      "symbol": "SystemSoundsApp",
-      "symbol_kind": "source.lang.swift.decl.struct",
       "warning": "undocumented"
     }
   ],
