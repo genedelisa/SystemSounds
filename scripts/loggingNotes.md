@@ -97,6 +97,9 @@ $ log stream --info --debug --predicate '(process = "myprocess" and
 ```
 
 ## Links
+* [Apple docs][OSLogging-homepage-url]
+* [WWDC 16][WWDC-2016-url]
+
 
 [OSLogging-homepage-url]:https://developer.apple.com/documentation/os/logging
 

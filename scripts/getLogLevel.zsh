@@ -1,4 +1,4 @@
 #!/usr/bin/env zsh
 
-sudo log config --status --subsystem com.rockhoppertech.SystemSounds
+sudo /usr/bin/log config --status --subsystem com.rockhoppertech.SystemSounds
 

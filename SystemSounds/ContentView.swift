@@ -88,6 +88,10 @@ struct ContentView: View {
                             audio.vibrate()
                         } label: {
                             Text("Vibrate")
+                                .accessibility(label: Text("Vibrate"))
+                                .accessibility(hint: Text("This will vibrate your phone"))
+                                .accessibility(identifier: "VibrateButton")
+
                         }
                         .buttonStyle(GDButtonStyle())
                         
@@ -95,6 +99,10 @@ struct ContentView: View {
                             audio.annoy()
                         } label: {
                             Text("Annoy")
+                                .accessibility(label: Text("Vibrate five times"))
+                                .accessibility(hint: Text("This will vibrate your phone 5 times"))
+                                .accessibility(identifier: "MultiVibrateButton")
+
                         }
                         .buttonStyle(GDButtonStyle())
                         
@@ -102,6 +110,10 @@ struct ContentView: View {
                             audio.registerVibrateCompletion()
                         } label: {
                             Text("Register Vibrate completion. Call only once.")
+                                .accessibility(label: Text("Register completion callback"))
+                                .accessibility(hint: Text("Vibrate after this to see the callback"))
+                                .accessibility(identifier: "CompletionButton")
+
                         }
                         .buttonStyle(GDButtonStyle())
                         
@@ -121,12 +133,18 @@ struct ContentView: View {
                     })
                 }
                 .listStyle(GroupedListStyle())
+                .accessibility(label: Text("List of system sounds"))
+                .accessibility(hint: Text("This is a list of system sounds"))
+                .accessibility(identifier: "SystemSoundList")
                 
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
                         Menu {
                             Toggle(isOn: $fullPath, label: {
                                 Text("Full Path")
+                                    .accessibility(label: Text("Display the full path in the List"))
+                                    .accessibility(hint: Text("Click it to toggle "))
+                                    .accessibility(identifier: "FullPathToggle")
                             })
                             
                         } label: {
@@ -159,26 +177,5 @@ struct ContentView_Previews: PreviewProvider {
                 .previewDisplayName("Dark: iPhone 12")
         }
         
-    }
-}
-
-/// A Button style to keep things dry
-struct GDButtonStyle: ButtonStyle {
-    func makeBody(configuration: Self.Configuration) -> some View {
-        
-        configuration.label
-            .padding()
-            .background(!configuration.isPressed ?
-                            Color.blue : Color.green)
-            
-            .foregroundColor(!configuration.isPressed ? .white : .black)
-            
-            .cornerRadius(8)
-            //            .clipShape(Capsule())
-            .compositingGroup()
-            .shadow(color: .black, radius: 3)
-            .opacity(configuration.isPressed ? 0.5 : 1.0)
-            .scaleEffect(configuration.isPressed ? 0.8 : 1.0)
-            .animation(.easeOut(duration: 0.2))
     }
 }

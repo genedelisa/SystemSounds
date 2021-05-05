@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		184BEE32264060EE006BBC33 /* serena.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 184BEE31264060EE006BBC33 /* serena.m4a */; };
+		184BEE57264343C2006BBC33 /* GDButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184BEE56264343C2006BBC33 /* GDButtonStyle.swift */; };
 		18AFC9BC26404C9A0095D8E7 /* SystemSoundsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AFC9BB26404C9A0095D8E7 /* SystemSoundsApp.swift */; };
 		18AFC9BE26404C9A0095D8E7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18AFC9BD26404C9A0095D8E7 /* ContentView.swift */; };
 		18AFC9C026404C9B0095D8E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18AFC9BF26404C9B0095D8E7 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		184BEE532642DAFD006BBC33 /* getLogLevel.zsh */ = {isa = PBXFileReference; lastKnownFileType = text; path = getLogLevel.zsh; sourceTree = "<group>"; };
 		184BEE542642DAFD006BBC33 /* streamLog.zsh */ = {isa = PBXFileReference; lastKnownFileType = text; path = streamLog.zsh; sourceTree = "<group>"; };
 		184BEE552642DAFD006BBC33 /* setDebugLogLevel.zsh */ = {isa = PBXFileReference; lastKnownFileType = text; path = setDebugLogLevel.zsh; sourceTree = "<group>"; };
+		184BEE56264343C2006BBC33 /* GDButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GDButtonStyle.swift; sourceTree = "<group>"; };
 		18AFC9B826404C9A0095D8E7 /* SystemSounds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SystemSounds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18AFC9BB26404C9A0095D8E7 /* SystemSoundsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSoundsApp.swift; sourceTree = "<group>"; };
 		18AFC9BD26404C9A0095D8E7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -134,10 +136,11 @@
 				184BEE31264060EE006BBC33 /* serena.m4a */,
 				18AFC9BB26404C9A0095D8E7 /* SystemSoundsApp.swift */,
 				18AFC9BD26404C9A0095D8E7 /* ContentView.swift */,
+				184BEE56264343C2006BBC33 /* GDButtonStyle.swift */,
+				18AFC9E626404CB40095D8E7 /* Audio.swift */,
 				18AFC9BF26404C9B0095D8E7 /* Assets.xcassets */,
 				18AFC9C426404C9B0095D8E7 /* Info.plist */,
 				18AFC9C126404C9B0095D8E7 /* Preview Content */,
-				18AFC9E626404CB40095D8E7 /* Audio.swift */,
 			);
 			path = SystemSounds;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 			files = (
 				18AFC9E726404CB40095D8E7 /* Audio.swift in Sources */,
 				18AFC9BE26404C9A0095D8E7 /* ContentView.swift in Sources */,
+				184BEE57264343C2006BBC33 /* GDButtonStyle.swift in Sources */,
 				18AFC9BC26404C9A0095D8E7 /* SystemSoundsApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
