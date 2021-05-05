@@ -396,32 +396,44 @@ class Audio: ObservableObject {
         return outPropertyData == 1 ? true: false
     }
     
-    /// Add a completion callback to vibrate
+    /// Add a completion callback to vibrate.
+    /// This doesn't currently work!
+    /// Doesn't really matter because the other play functions have completions that work.
     func vibrateWithCompletion() {
         
+        let inSystemSoundID: SystemSoundID = kSystemSoundID_Vibrate
+        let inRunLoop: CFRunLoop? = nil
+        let inRunLoopMode: CFString? = nil
+        var inClientData = "Hey!"
+        
+        //AudioServicesSystemSoundCompletionProc = @convention(c) (SystemSoundID, UnsafeMutableRawPointer?) -> Void
+
         // add a completion to vibrate to vibrate again.
         let osstatus = AudioServicesAddSystemSoundCompletion(
-            kSystemSoundID_Vibrate,
-            nil, nil, // run loop params
-            {
-                (sid: SystemSoundID, clientData: UnsafeMutableRawPointer?) -> Void in
+            inSystemSoundID, inRunLoop, inRunLoopMode,
+            { (sid: SystemSoundID, clientData: UnsafeMutableRawPointer?) -> Void in
                 if let cd = clientData {
                     print("client data: \(cd)")
                 }
                 print("\(sid) completed")
-
+                
                 // play it again, sam
                 AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
             },
-            nil) // client data
+            &inClientData)
         
         if osstatus != kAudioServicesNoError {
             print("could not add sound completion")
             print("osstatus: \(osstatus)")
         }
         checkSysSoundError(osstatus: osstatus)
+        
+        /*
+         I'm getting this. I don't know why. Do you?
+         kAudioServicesSystemSoundUnspecifiedError -1500
+         */
     }
-    
+
     /// Unregister the vibrate completion
     func removeVibrateCompletion() {
         AudioServicesRemoveSystemSoundCompletion(kSystemSoundID_Vibrate)

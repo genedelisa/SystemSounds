@@ -44,6 +44,7 @@
 		184BEE3826418676006BBC33 /* .github */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .github; sourceTree = "<group>"; };
 		184BEE3926418676006BBC33 /* build-docs.zsh */ = {isa = PBXFileReference; lastKnownFileType = text; path = "build-docs.zsh"; sourceTree = "<group>"; };
 		184BEE3A26418750006BBC33 /* runtests.zsh */ = {isa = PBXFileReference; lastKnownFileType = text; path = runtests.zsh; sourceTree = "<group>"; };
+		184BEE512642D0EB006BBC33 /* jazzy.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = jazzy.yml; sourceTree = "<group>"; };
 		18AFC9B826404C9A0095D8E7 /* SystemSounds.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SystemSounds.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18AFC9BB26404C9A0095D8E7 /* SystemSoundsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSoundsApp.swift; sourceTree = "<group>"; };
 		18AFC9BD26404C9A0095D8E7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -87,9 +88,10 @@
 		18AFC9AF26404C9A0095D8E7 = {
 			isa = PBXGroup;
 			children = (
-				184BEE3A26418750006BBC33 /* runtests.zsh */,
 				184BEE3826418676006BBC33 /* .github */,
+				184BEE3A26418750006BBC33 /* runtests.zsh */,
 				184BEE3926418676006BBC33 /* build-docs.zsh */,
+				184BEE512642D0EB006BBC33 /* jazzy.yml */,
 				184BEE3326409CEB006BBC33 /* .gitignore */,
 				184BEE3426409CEB006BBC33 /* .swift-version */,
 				184BEE3726409CEC006BBC33 /* .swiftlint.yml */,

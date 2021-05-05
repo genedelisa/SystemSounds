@@ -112,6 +112,9 @@ Please read the [LICENSE](LICENSE) for details.
 [issues-shield]: https://img.shields.io/github/issues/genedelisa/SystemSounds.svg?style=flat
 [issues-url]: https://github.com/genedelisa/SystemSounds/issues
 
+[downloads-shield]:https://img.shields.io/github/downloads/genedelisa/SystemSounds/total
+[downloads-url]: https://github.com/genedelisa/SystemSounds/releases/
+
 [license-shield]: https://img.shields.io/github/license/genedelisa/SystemSounds.svg?style=flat
 [license-url]: https://github.com/genedelisa/SystemSounds/blob/main/LICENSE
 
